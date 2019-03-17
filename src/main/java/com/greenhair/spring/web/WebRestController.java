@@ -1,13 +1,28 @@
 package com.greenhair.spring.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class WebRestController {
+import com.greenhair.spring.domain.posts.PostsRepository;
+import com.greenhair.spring.dto.posts.PostsSaveRequestDto;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "HelloWorld";
+import lombok.AllArgsConstructor;
+
+@RestController
+@AllArgsConstructor
+public class WebRestController {
+	
+	private PostsRepository postsRepository;
+
+	@GetMapping("/hello")
+	public String hello() {
+		return "HelloWorld";
+	}
+	
+	@PostMapping("/posts")
+    public void savePosts(@RequestBody PostsSaveRequestDto dto){
+        postsRepository.save(dto.toEntity());
     }
 }
