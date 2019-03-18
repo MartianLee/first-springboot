@@ -2,4 +2,12 @@ spring:
   h2:
     console:
       enabled: true
-
+  mustache:
+    prefix: classpath:/templates/
+    suffix: .hbs
+  handlebars:
+    prefix: file:src/main/resources/templates/
+    suffix: .hbs
+    
+    
+    
